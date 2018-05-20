@@ -26,6 +26,13 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Use mailer in development with letter_opener.
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+
+  # default_url_options for Devise, just in case.
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
