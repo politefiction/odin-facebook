@@ -18,6 +18,4 @@
 
 .byebug_history
 
-
-# Keep my secrets
-/config/secrets.yml
+.env
