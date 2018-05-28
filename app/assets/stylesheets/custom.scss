@@ -1,0 +1,20 @@
+@import "semantic-ui";
+@import "semantic-ui/collections/menu";
+
+/* page header */
+
+#header-title {
+    position: relative;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+/* body */
+
+.ui.pointing.menu {
+    border-bottom: 2px solid rgb(152, 213, 213);
+}
+
+.ui.primary.button {
+    background-color: rgb(152, 220, 220);
+}

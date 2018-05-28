@@ -9,19 +9,36 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= value %>
+  <% flash.each do |key, value| %>
+    <%= value %>
+  <% end %>
+    <div class="ui pointing menu">
+      <h2 id="header-title">Odin FB of Sorts</h2>
+      <div class="right menu">
+        <%= link_to "Home", root_path, class: "item" %>
+        <% if user_signed_in? %>
+          <%= link_to "Profile", profile_path(current_user), class: "item" %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "item" %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path, class: "item" %>
+        <% end %>
+      </div>
+    </div>
+    <% if user_signed_in? %>
+      <div class="ui two column relaxed grid">
+        <div class="ui vertical menu">
+          <%= link_to "Friends", '#', class: "item" %>
+          <%= link_to "Posts", '#', class: "item" %>
+          <%= link_to "Groups", '#', class: "item" %>
+          <%= link_to "Arbitrary Link", '#', class: "item" %>
+        </div>
+        <div class="column">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
     <% end %>
-    <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <% if user_signed_in? %>
-      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-      <li><%= link_to "Profile", profile_path(current_user) %></li>
-      <% else %>
-      <li><%= link_to "Sign in", new_user_session_path %></li>
-      <% end %>
-    </ul>
-    <%= yield %>
     <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

@@ -1,2 +1,13 @@
 <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<% if current_user == @user %>
+    <h6><%= link_to "Edit Profile", edit_user_registration_path(@user) %></h6>
+<% end %>
+
+<h3>About Me</h3>
+<p><%= Faker::Lorem.paragraph %></p>
+
+<h3>Interests</h3>
+<p><%= Faker::Lorem.words(12).join(", ").capitalize %></p>
+
+<h3>HP quote of the day:</h3>
+<p><%= Faker::HarryPotter.quote %>
