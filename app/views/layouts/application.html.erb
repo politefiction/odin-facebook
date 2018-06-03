@@ -17,6 +17,7 @@
       <div class="right menu">
         <%= link_to "Home", root_path, class: "item" %>
         <% if user_signed_in? %>
+          <%= link_to "Inbox", conversations_path, class: "item" %>
           <%= link_to "Profile", profile_path(current_user), class: "item" %>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "item" %>
         <% else %>

@@ -7,7 +7,24 @@
 example:
   first_name: "Example"
   last_name: "User"
-  email: "example@user.com"
+  email: "user@example.com"
 
-#two: {}
-# column: value
+marianna:
+  first_name: "Marianna"
+  last_name: "Goldner"
+  email: "mgoldner@example.com"
+
+sid:
+  first_name: "Sid"
+  last_name: "Schultz"
+  email: "sschultz@example.com"
+
+harry:
+  first_name: "Harry"
+  last_name: "Hackett"
+  email: "hhackett@example.com"
+
+margaret:
+  first_name: "Margaret"
+  last_name: "Glover"
+  email: "mglover@example.com"
