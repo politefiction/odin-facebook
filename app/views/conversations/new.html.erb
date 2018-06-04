@@ -1,0 +1,10 @@
+<h3>Compose your message:</h3>
+<%= form_for @conversation do |f| %>
+    <%= f.hidden_field :sender_id, value: current_user.id %>
+    <%= f.hidden_field :recipient_id, value: params[:recipient_id].to_i %>
+    <%= f.fields_for :messages, html: {class: "ui reply form"} do |m| %>
+        <div class="field"><%= m.text_area :body, class: "form-control" %></div>
+        <%= m.hidden_field :user_id, value: current_user.id %>
+    <% end %>
+    <div><%= f.submit "Submit message", class: "ui blue labeled submit icon button" %></div>
+<% end %>

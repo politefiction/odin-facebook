@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
     get 'messages', on: :member
   end
-
+  
   get 'profile/:id', to: 'users#show', as: 'profile'
 
 end

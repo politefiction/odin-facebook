@@ -4,7 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   def setup
-    @user = users(:example)
+    @user = users(:grace)
   end
 
   test "should get profile" do
