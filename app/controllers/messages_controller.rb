@@ -5,10 +5,7 @@ class MessagesController < ApplicationController
   end
 
   def index
-    unless current_user == (@conversation.sender or @conversation.recipient)
-      flash[:danger] = "That ain't your conversation."
-      redirect_to root_url
-    else
+    if current_user == @conversation.sender || current_user == @conversation.recipient
       @messages = @conversation.messages
       if @messages.length > 10
         @over_ten = true
@@ -22,11 +19,10 @@ class MessagesController < ApplicationController
         @messages.last.read = true if (@messages.last.user_id != current_user.id)
       end
       @message = @conversation.messages.new
+    else
+      flash[:danger] = "Get outta here."
+      redirect_to root_url
     end
-  end
-
-  def new # Do I need this?
-    @message = @conversation.messages.new
   end
 
   def create

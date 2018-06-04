@@ -22,7 +22,7 @@
         <% @users.each do |user| %>
             <% if user.id != current_user.id %>
                 <div class="item">
-                <%= user.first_name %> <%= link_to "Message Me!", new_conversation_path(sender_id: current_user.id, recipient_id: user.id) %>
+                <%= user.first_name %> <%= link_to "Message Me!", conversation_link(current_user, user) %>
                 </div>
             <% end %>
         <% end %>

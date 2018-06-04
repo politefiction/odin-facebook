@@ -21,7 +21,6 @@ class ConversationsController < ApplicationController
     redirect_to conversation_messages_path(@conversation)
   end
 
-
   private
     def conversation_params
       params.require(:conversation).permit(:sender_id, :recipient_id, :messages_attributes => [:user_id, :body])
