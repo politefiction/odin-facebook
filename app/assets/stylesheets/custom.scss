@@ -9,6 +9,7 @@
     margin-left: 5px;
 }
 
+
 /* body */
 
 .ui.pointing.menu {
@@ -16,5 +17,17 @@
 }
 
 .ui.primary.button {
-    background-color: rgb(152, 220, 220);
+    background: rgb(152, 220, 220);
+}
+
+/* inbox */
+
+#inbox_unread {
+    background: rgb(152, 213, 213);
+    font-weight: bold;
+
+}
+
+.unread_messages {
+    font-weight: bold;
 }

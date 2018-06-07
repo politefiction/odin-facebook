@@ -15,12 +15,12 @@ class MessagesController < ApplicationController
         @over_ten = false
         @messages = @conversation.messages
       end
-      if @messages.last
-        @messages.last.read = true if (@messages.last.user_id != current_user.id)
+      if @messages.any? { |m| m.read == false }
+        @messages.each { |m| m.update_attribute("read", true) if m.user_id != current_user.id }
       end
       @message = @conversation.messages.new
     else
-      flash[:danger] = "Get outta here."
+      flash[:danger] = "This conversation is private."
       redirect_to root_url
     end
   end
