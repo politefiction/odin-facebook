@@ -25,5 +25,5 @@
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
     <div class="field"><%= f.text_area :body, class: "form-control" %></div>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <div><%= f.submit "Submit message", class: "ui blue labeled submit icon button" %></div>
+    <div><%= f.submit "Submit message", class: "ui teal button" %></div>
 <% end %>

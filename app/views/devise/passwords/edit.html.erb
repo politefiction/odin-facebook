@@ -15,11 +15,12 @@
   <div class="field">
     <%= f.label :password_confirmation, "Confirm new password" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+  </div><br />
 
   <div class="actions">
-    <%= f.submit "Change my password" %>
+    <%= f.submit "Change my password", class: "ui teal button" %>
   </div>
 <% end %>
+<br />
 
 <%= render "devise/shared/links" %>

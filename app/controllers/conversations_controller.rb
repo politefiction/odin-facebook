@@ -12,8 +12,14 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.create!(conversation_params)
-    redirect_to conversation_messages_path(@conversation)
+    @conversation = Conversation.new(conversation_params)
+    if @conversation.save
+      redirect_to conversation_messages_path(@conversation)
+    else
+      flash.now[:alert] = "Message cannot be blank."
+      @conversation.messages.build
+      render new_conversation_path(recipient_id: params[:recipient_id])
+    end
   end
 
   private

@@ -4,7 +4,7 @@ module ConversationsHelper
           @conversation = Conversation.between(sender.id, recipient.id).first
           conversation_messages_path(@conversation)
         else
-          new_conversation_path(sender_id: sender.id, recipient_id: recipient.id)
+          new_conversation_path(recipient_id: recipient.id)
         end
     end
 

@@ -9,38 +9,17 @@
   </head>
 
   <body>
-    <div class="ui pointing menu">
-      <h2 id="header-title">Odin FB of Sorts</h2>
-      <div class="right menu">
-        <%= link_to "Home", root_path, class: "item" %>
-        <% if user_signed_in? %>
-          <%= link_to "Inbox", conversations_path, id: inbox_unread, class: "item" %>
-          <%= link_to "Profile", profile_path(current_user), class: "item" %>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "item" %>
-        <% else %>
-          <%= link_to "Sign in", new_user_session_path, class: "item" %>
-        <% end %>
-      </div>
-    </div>
+    <%= render 'layouts/header' %>
     <% if user_signed_in? %>
       <div class="ui two column relaxed grid">
-        <div class="ui vertical menu">
-          <%= link_to "Friends", '#', class: "item" %>
-          <%= link_to "Posts", '#', class: "item" %>
-          <%= link_to "Groups", '#', class: "item" %>
-          <%= link_to "Arbitrary Link", '#', class: "item" %>
-        </div>
+        <%= render 'layouts/left_sidebar' %>
         <div class="column">
-          <% flash.each do |key, value| %>
-            <%= value %>
-          <% end %>
+          <%= render 'layouts/flash_messages' %>
           <%= yield %>
         </div>
       </div>
     <% else %>
-      <% flash.each do |key, value| %>
-        <%= value %>
-      <% end %>
+      <%= render 'layouts/flash_messages' %>
       <%= yield %>
     <% end %>
     <%= debug(params) if Rails.env.development? %>

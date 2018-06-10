@@ -16,9 +16,6 @@
     border-bottom: 2px solid rgb(152, 213, 213);
 }
 
-.ui.primary.button {
-    background: rgb(152, 220, 220);
-}
 
 /* inbox */
 
@@ -30,4 +27,12 @@
 
 .unread_messages {
     font-weight: bold;
+}
+
+/* messages */
+
+.text-box {
+    width: 300px;
+    height: 150px;
+    margin-bottom: 10px;
 }
