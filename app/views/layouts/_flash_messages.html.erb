@@ -1,0 +1,10 @@
+<% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+        <div class="header">
+            <%= flash_header(key) %>
+        </div>
+        <ul class="list">
+            <li><%= value %></li>
+        </ul>
+    </div>
+<% end %>

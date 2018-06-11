@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  friend_id: MyString
+  integer: MyString
+  inverse_friend_id: 1
+
+two:
+  friend_id: MyString
+  integer: MyString
+  inverse_friend_id: 1

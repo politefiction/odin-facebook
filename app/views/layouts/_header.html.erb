@@ -1,0 +1,13 @@
+<div class="ui pointing menu">
+    <h2 id="header-title">Odin FB of Sorts</h2>
+        <div class="right menu">
+        <%= link_to "Home", root_path, class: "item" %>
+        <% if user_signed_in? %>
+            <%= link_to "Inbox", conversations_path, id: inbox_unread, class: "item" %>
+            <%= link_to "Profile", profile_path(current_user), class: "item" %>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "item" %>
+        <% else %>
+            <%= link_to "Sign in", new_user_session_path, class: "item" %>
+        <% end %>
+        </div>
+</div>

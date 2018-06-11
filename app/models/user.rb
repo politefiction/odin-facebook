@@ -4,9 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
          :omniauthable, omniauth_providers: %i[facebook]
-
   validates :first_name, presence: true
   validates :last_name, presence: true
+
+  has_many :friendships, foreign_key: :inverse_friend_id
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: :friend_id
+  has_many :friends, through: :inverse_friendships
+  has_many :inverse_friends, through: :friendships
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
