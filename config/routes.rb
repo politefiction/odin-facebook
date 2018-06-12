@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
     get 'messages', on: :member
   end
-  
-  get 'profile/:id', to: 'users#show', as: 'profile'
+  resources :friend_requests do
+    resources :friendships, only: [:create]
+  end
 
+  get 'profile/:id', to: 'users#show', as: 'profile'
+  delete 'friendship/:id', to: 'friendship#destroy'
 end

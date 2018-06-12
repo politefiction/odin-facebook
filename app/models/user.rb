@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :friends, through: :inverse_friendships
   has_many :inverse_friends, through: :friendships
 
+  has_many :received_requests, class_name: "FriendRequest", foreign_key: :befriendee
+  has_many :sent_requests, class_name: "FriendRequest", foreign_key: :befriender
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

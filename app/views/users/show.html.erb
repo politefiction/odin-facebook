@@ -1,7 +1,11 @@
-<h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
-<% if current_user == @user %>
-    <h6><%= link_to "Edit Profile", edit_user_registration_path(@user) %></h6>
-<% end %>
+<div class="profile-header">
+    <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1> 
+    <% if current_user == @user %>
+        <h6><%= link_to "Edit Profile", edit_user_registration_path(@user) %></h6>
+    <% else %>
+        <div class="mini ui button"><%= link_to "Send Friend Request", '#' %></div>
+    <% end %>
+</div>
 
 <h3>About Me</h3>
 <p><%= Faker::Lorem.paragraph %></p>
