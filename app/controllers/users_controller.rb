@@ -8,4 +8,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def friends_list
+    @friends = current_user.friends
+  end
+
 end

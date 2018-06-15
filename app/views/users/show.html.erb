@@ -3,7 +3,11 @@
     <% if current_user == @user %>
         <h6><%= link_to "Edit Profile", edit_user_registration_path(@user) %></h6>
     <% else %>
-        <div class="mini ui button"><%= link_to "Send Friend Request", '#' %></div>
+        <%= form_for(FriendRequest.new) do |f| %>
+            <%= f.hidden_field :befriender_id, value: current_user.id %>
+            <%= f.hidden_field :befriendee_id, value: @user.id %>
+            <%= f.button "Send Friend Request", class: "mini ui button" %>
+        <% end %>
     <% end %>
 </div>
 

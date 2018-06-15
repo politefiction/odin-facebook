@@ -1,5 +1,6 @@
 <div class="ui vertical menu">
     <%= link_to "Friends", '#', class: "item" %>
+    <%= link_to "Friend Requests (#{current_user.received_requests.count})", friend_requests_path, class: "item" %>
     <%= link_to "Posts", '#', class: "item" %>
     <%= link_to "Groups", '#', class: "item" %>
     <%= link_to "Arbitrary Link", '#', class: "item" %>
