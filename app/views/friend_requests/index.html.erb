@@ -1,11 +1,21 @@
-<h1>Friend Requests</h1>
+<h1>Friend Requests</h1><br />
 
 <% unless @friend_requests.empty? %>
+    <div class="ui relaxed divided list">
     <% @friend_requests.all.each do |request| %>
-            <%= "#{request.befriender.first_name} wants to be friends!" %><br />
-            <%= link_to "Accept", friendships_path(friend_id: current_user.id, inverse_friend_id: request.befriender.id), method: :post, class: "small ui left attached button" %>
-            <%= link_to "Ignore", '#', class: "small ui right attached button" %>
+            <div class="item">
+                <div class="ui grid">
+                    <div class="eight wide column">
+                        <p><%= link_to request.befriender.first_name, profile_path(request.befriender) %> wants to be friends!</p>
+                    </div>
+                    <div class="eight wide column">
+                        <%= link_to "Accept", friendships_path(friend_id: current_user.id, inverse_friend_id: request.befriender.id), method: :post, class: "small ui left attached button" %>
+                        <%= link_to "Ignore", friend_request_path(request), method: :delete, class: "small ui right attached button" %>
+                    </div>
+                </div>
+            </div>
     <% end %>
+    </div>
 <% else %>
     <p>No requests at this moment.</p>
 <% end %>

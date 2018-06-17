@@ -1,14 +1,21 @@
-<div class="profile-header">
-    <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1> 
-    <% if current_user == @user %>
-        <h6><%= link_to "Edit Profile", edit_user_registration_path(@user) %></h6>
-    <% else %>
-        <%= form_for(FriendRequest.new) do |f| %>
-            <%= f.hidden_field :befriender_id, value: current_user.id %>
-            <%= f.hidden_field :befriendee_id, value: @user.id %>
-            <%= f.button "Send Friend Request", class: "mini ui button" %>
+<div class="ui grid">
+    <div class="six wide column">
+        <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1> 
+    </div>
+    <div class="ten wide column">
+        <% if current_user == @user %>
+            <h6><%= link_to "Edit Profile", edit_user_registration_path(@user) %></h6>
+        <% elsif current_user.received_requests.where("befriender_id = ?", @user.id).present? %>
+            <%= link_to "Accept Friend Request", friendships_path(friend_id: current_user.id, inverse_friend_id: @user.id), method: :post, class: "mini ui left attached button" %>
+            <%= link_to "Ignore Friend Request", friend_request_path(current_user.received_requests.find_by("befriender_id = ?", @user.id)), method: :delete, class: "mini ui right attached button" %>
+        <% else %>
+            <%= form_for(FriendRequest.new) do |f| %>
+                <%= f.hidden_field :befriender_id, value: current_user.id %>
+                <%= f.hidden_field :befriendee_id, value: @user.id %>
+                <%= f.button "Send Friend Request", class: "mini ui button" %>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
 </div>
 
 <h3>About Me</h3>

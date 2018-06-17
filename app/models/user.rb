@@ -9,8 +9,8 @@ class User < ApplicationRecord
 
   has_many :friendships, foreign_key: :inverse_friend_id
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: :friend_id
-  has_many :friends, through: :inverse_friendships
-  has_many :inverse_friends, through: :friendships
+  has_many :friends, through: :friendships
+  has_many :inverse_friends, through: :inverse_friendships
 
   has_many :received_requests, class_name: "FriendRequest", foreign_key: :befriendee
   has_many :sent_requests, class_name: "FriendRequest", foreign_key: :befriender

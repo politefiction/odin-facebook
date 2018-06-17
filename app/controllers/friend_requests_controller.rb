@@ -13,10 +13,14 @@ class FriendRequestsController < ApplicationController
         else
             flash[:alert] = "Request failed. Try again?"
         end
-        redirect_back
+        redirect_back(fallback_location: root_url)
     end
 
     def destroy
+        @friend_request = FriendRequest.find(params[:id])
+        @friend_request.destroy
+        flash[:success] = "Request ignored."
+        redirect_back(fallback_location: root_url)
     end
 
     private
