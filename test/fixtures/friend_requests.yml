@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  befriender_id: 1
-  befriendee_id: 1
 
-two:
-  befriender_id: 1
-  befriendee_id: 1
+# one:
+#  befriender_id: 1
+#  befriendee_id: 1
+
+# two:
+#  befriender_id: 1
+#  befriendee_id: 1

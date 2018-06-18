@@ -12,11 +12,14 @@ class FriendshipsController < ApplicationController
             flash[:alert] = "Hmm, something went wrong. Try again?"
             redirect_to friend_requests_path
         end
-        # create inverse friendship
     end
 
     def destroy
-        # unfriend, basically
+        @friendship = Friendship.find(params[:id])
+        destroy_inverse_friendship(@friendship)
+        @friendship.destroy
+        flash[:information] = "User unfriended."
+        redirect_back(fallback_location: root_url)
     end
 
 
@@ -32,5 +35,9 @@ class FriendshipsController < ApplicationController
 
     def destroy_friend_request(friendship)
         FriendRequest.where("befriender_id = ? AND befriendee_id = ?", friendship.inverse_friend.id, current_user.id).destroy_all
+    end
+
+    def destroy_inverse_friendship(friendship)
+        current_user.inverse_friendships.where("inverse_friend_id = ?", friendship.friend).destroy_all
     end
 end
