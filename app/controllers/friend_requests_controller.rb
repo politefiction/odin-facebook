@@ -7,6 +7,7 @@ class FriendRequestsController < ApplicationController
 
     def create
         @friend_request = FriendRequest.new(friend_request_params)
+        @friend_request.befriender = current_user
         if @friend_request.save
             flash[:success] = "Friend request has been sent."
             # should incorporate mailer later
@@ -26,6 +27,6 @@ class FriendRequestsController < ApplicationController
     private
     
     def friend_request_params
-        params.require(:friend_request).permit(:befriender_id, :befriendee_id)
+        params.permit(:befriender_id, :befriendee_id)
     end
 end

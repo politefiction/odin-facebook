@@ -1,0 +1,11 @@
+<h1>Friends</h1>
+
+<div class="ui middle aligned selection list">
+    <% @friends.order(:last_name).each do |friend| %>
+        <div class="item">
+            <div class="content">
+                <p><%= link_to "#{friend.first_name} #{friend.last_name}", profile_path(friend) %> | <%= link_to "Send Message", conversation_link(current_user, friend) %> | <%= link_to "Unfriend", friendship_path(find_friendship(friend)), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+            </div>
+        </div>
+    <% end %>
+</div>

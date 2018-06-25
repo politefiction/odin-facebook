@@ -3,7 +3,8 @@ class FriendshipsController < ApplicationController
 
     def create
         @friendship = Friendship.new(friendship_params)
-        if @friendship.save
+        @friendship.friend = current_user
+        if request_received_from?(@friendship.inverse_friend) and @friendship.save
             create_inverse_friendship
             destroy_friend_request(@friendship)
             flash[:success] = "You are now friends with #{@friendship.inverse_friend.first_name}!"
@@ -26,11 +27,11 @@ class FriendshipsController < ApplicationController
     private
 
     def friendship_params
-        params.permit(:friend_id, :inverse_friend_id)
+        params.permit(:inverse_friend_id)
     end
 
     def create_inverse_friendship
-        Friendship.create(friend_id: params[:inverse_friend_id], inverse_friend_id: params[:friend_id])
+        Friendship.create(friend_id: params[:inverse_friend_id], inverse_friend_id: current_user.id)
     end
 
     def destroy_friend_request(friendship)
@@ -39,5 +40,9 @@ class FriendshipsController < ApplicationController
 
     def destroy_inverse_friendship(friendship)
         current_user.inverse_friendships.where("inverse_friend_id = ?", friendship.friend).destroy_all
+    end
+
+    def request_received_from?(user)
+        current_user.received_requests.where("befriender_id = ?", user.id).any?
     end
 end

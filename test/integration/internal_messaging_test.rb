@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class InternalMessagingTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
 
   def setup
     @grace = users(:grace)
