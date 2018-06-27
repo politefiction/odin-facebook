@@ -10,7 +10,7 @@ class FriendRequestsController < ApplicationController
         @friend_request.befriender = current_user
         if @friend_request.save
             flash[:success] = "Friend request has been sent."
-            # should incorporate mailer later
+            FriendingMailer.fr_email(@friend_request.befriendee, @friend_request.befriender).deliver
         else
             flash[:alert] = "Request failed. Try again?"
         end

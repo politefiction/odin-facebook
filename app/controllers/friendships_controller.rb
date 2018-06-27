@@ -8,6 +8,7 @@ class FriendshipsController < ApplicationController
             create_inverse_friendship
             destroy_friend_request(@friendship)
             flash[:success] = "You are now friends with #{@friendship.inverse_friend.first_name}!"
+            FriendingMailer.new_friend_email(@friendship.friend, @friendship.inverse_friend).deliver
             redirect_to root_path
         else
             flash[:alert] = "Hmm, something went wrong. Try again?"
