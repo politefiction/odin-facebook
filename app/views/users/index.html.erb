@@ -1,3 +1,7 @@
-<h1><%= current_user.first_name %>'s Front Page</h1>
+<h1>All Users</h1>
 
-<p>Presumably a newsfeed and ads will go here.</p>
+<div class="ui list">
+<% @users.order(:last_name).each do |user| %>
+    <%= link_to "#{user.first_name} #{user.last_name}", profile_path(user), class: "item" %>
+<% end %>
+</div>
