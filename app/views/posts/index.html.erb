@@ -8,10 +8,10 @@
 <div class="ui internally divided grid">
 <% @posts.each do |post| %>
     <div class="row">
-        <div class="five wide column"><%= link_to "#{post.title}", user_post_path(post.user_id, post) %></div> 
+        <div class="five wide column"><%= link_to "#{post.title}", user_post_path(post.user, post) %></div> 
         <% if current_user == User.find(params[:user_id]) %>
-            <div class="two wide column"><%= link_to "Edit", edit_user_post_path(post.user_id, post) %></div> 
-            <div class="two wide column"><%= link_to "Delete", '#' %></div>
+            <div class="two wide column"><%= link_to "Edit", edit_user_post_path(current_user, post) %></div> 
+            <div class="two wide column"><%= link_to "Delete", user_post_path(current_user, post), method: :delete, data: { confirm: 'Are you sure?' } %></div>
         <% end %>
     </div>
 <% end %>
