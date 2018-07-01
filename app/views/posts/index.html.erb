@@ -1,12 +1,18 @@
-<h1>Your Posts</h1>
+<% if current_user == User.find(params[:user_id]) %>
+    <h1>Your Posts</h1>
+    <p><%= link_to "New Post", new_user_post_path %><p>
+<% else %>
+    <h1><%= "#{User.find(params[:user_id]).first_name}'s Posts" %></h1>
+<% end %>
 
-<p><%= link_to "New Post", new_user_post_path %><p>
 <div class="ui internally divided grid">
 <% @posts.each do |post| %>
     <div class="row">
         <div class="five wide column"><%= link_to "#{post.title}", user_post_path(post.user_id, post) %></div> 
-        <div class="two wide column"><%= link_to "Edit", edit_user_post_path(post.user_id, post) %></div> 
-        <div class="two wide column"><%= link_to "Delete", '#' %></div>
+        <% if current_user == User.find(params[:user_id]) %>
+            <div class="two wide column"><%= link_to "Edit", edit_user_post_path(post.user_id, post) %></div> 
+            <div class="two wide column"><%= link_to "Delete", '#' %></div>
+        <% end %>
     </div>
 <% end %>
 </div>

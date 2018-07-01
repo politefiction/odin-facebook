@@ -1,6 +1,12 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @posts = User.find(params[:user_id]).posts
+    unless user_or_friend?
+      flash[:notice] = "You must be friends with a user to view their posts."
+      redirect_to root_url
+    end
   end
 
   def new
@@ -21,6 +27,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    unless user_or_friend?
+      flash[:notice] = "You must be friends with a user to view their posts."
+      redirect_to root_url
+    end
   end
 
   def edit
@@ -42,10 +52,15 @@ class PostsController < ApplicationController
   def destroy
   end
 
+
   private
 
   def post_params
     params.require(:post).permit(:title, :body)
   end
 
+  def user_or_friend?
+    user = User.find(params[:user_id])
+    (current_user == user) or (user.friends.include? current_user)
+  end
 end
