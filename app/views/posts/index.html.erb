@@ -1,8 +1,12 @@
 <h1>Your Posts</h1>
 
-<div class="ui list">
-<%= link_to "New Post", new_user_post_path %>
+<p><%= link_to "New Post", new_user_post_path %><p>
+<div class="ui internally divided grid">
 <% @posts.each do |post| %>
-    <div><%= link_to "#{post.title}", user_post_path(post.user_id, post), class: "item" %> | <%= link_to "Edit", edit_user_post_path(post.user_id, post) %></div>
+    <div class="row">
+        <div class="five wide column"><%= link_to "#{post.title}", user_post_path(post.user_id, post) %></div> 
+        <div class="two wide column"><%= link_to "Edit", edit_user_post_path(post.user_id, post) %></div> 
+        <div class="two wide column"><%= link_to "Delete", '#' %></div>
+    </div>
 <% end %>
 </div>
