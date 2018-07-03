@@ -16,11 +16,6 @@
     border-bottom: 2px solid rgb(152, 213, 213);
 }
 
-.ui.right.vertical.menu {
-    float: right;
-    position: relative;
-}
-
 
 /* conversations and messages */
 
@@ -40,10 +35,50 @@
     margin-bottom: 10px;
 }
 
-/* posts */
+/* posts and comments */
 
 .large-text-box {
     width: 400px;
     height: 200px;
     margin-bottom: 10px;
+}
+
+.post-container {
+    position: relative;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0px 1px 1px 0 rgba(34, 36, 38, 0.15);
+    box-shadow: 0px 1px 1px 0 rgba(34, 36, 38, 0.15);
+    margin-bottom: 0.75em;
+    padding: 20px;
+    border-radius: 0.28571429rem 0.28571429rem 0 0.28571429rem;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+}
+
+.post-comment-container {
+    position: relative;
+    -webkit-box-shadow: 0px 1px 1px 0 rgba(34, 36, 38, 0.15);
+    box-shadow: 0px 1px 1px 0 rgba(34, 36, 38, 0.15);
+    border-radius: 0.28571429rem;
+    border: 0.75px solid rgba(34, 36, 38, 0.15);
+    padding-bottom: 20px;
+}
+
+.link-container {
+    padding: 0 10px 10px 10px;
+    font-weight: bold;
+}
+
+.left-link {
+    position: relative;
+    float: left;
+}
+
+.right-link {
+    position: relative;
+    float: right;
+}
+
+.formatted-author-time {
+    font-size: 11px;
+    font-style: italic;
 }

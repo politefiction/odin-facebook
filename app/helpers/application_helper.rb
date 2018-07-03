@@ -27,4 +27,12 @@ module ApplicationHelper
             when 'alert' then "We had a problem with your request:"
         end
     end
+
+    def calculate_grid_columns
+        if params[:id] and current_user.friends.include? User.find(params[:id])
+            "ui three column relaxed grid"
+        else
+            "ui two column relaxed grid"
+        end
+    end
 end

@@ -4,8 +4,13 @@
         <%= link_to "Home", root_path, class: "item" %>
         <% if user_signed_in? %>
             <%= link_to "Inbox", conversations_path, id: inbox_unread, class: "item" %>
-            <%= link_to "Profile", profile_path(current_user), class: "item" %>
-            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "item" %>
+            <div class="ui simple dropdown item">Hello, <%= "#{current_user.first_name}" %>!
+                <i class="dropdown icon"></i>
+                    <div class="menu">
+                    <%= link_to "Profile", profile_path(current_user), class: "item" %>
+                    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "item" %>
+                </div>
+            </div>  
         <% else %>
             <%= link_to "Sign in", new_user_session_path, class: "item" %>
         <% end %>

@@ -11,12 +11,17 @@
   <body>
     <%= render 'layouts/header' %>
     <% if user_signed_in? %>
-      <div class="ui two column relaxed grid">
+      <div class="<%= calculate_grid_columns %>">
         <%= render 'layouts/left_sidebar' %>
         <div class="column">
           <%= render 'layouts/flash_messages' %>
           <%= yield %>
         </div>
+        <% if params[:id] and current_user.friends.include? User.find(params[:id]) %>
+          <div class="column">
+              <%= render 'layouts/right_sidebar' %>
+          </div>
+        <% end %>
       </div>
     <% else %>
       <%= render 'layouts/flash_messages' %>
