@@ -4,7 +4,13 @@
             <%= flash_header(key) %>
         </div>
         <ul class="list">
-            <li><%= value %></li>
+            <% if value.is_a? Array %>
+                <% value.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            <% else %>
+                <li><%= value %></li>
+            <% end %>
         </ul>
     </div>
 <% end %>

@@ -2,6 +2,13 @@
 
 <div class="ui list">
 <% @users.order(:last_name).each do |user| %>
-    <%= link_to "#{user.first_name} #{user.last_name}", profile_path(user), class: "item" %>
+    <p>
+        <%= link_to "#{user.first_name} #{user.last_name}", profile_path(user), class: "item" %>
+        <% if user.id != current_user.id %>
+            | <%= link_to "Send Message", conversation_link(current_user, user) %>
+        <% else %>
+             (That's you!)
+        <% end %>
+    </p>
 <% end %>
 </div>

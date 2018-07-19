@@ -1,4 +1,15 @@
 <div class="ui right vertical menu">
     <%= link_to "#{@user.first_name}'s Posts", user_posts_path(@user), class: "item" %>
-    <%= link_to "Mutual friends", '#', class: "item" %>
+    <div class="ui simple dropdown item">Mutual Friends
+        <i class="dropdown icon"></i>
+        <div class="menu" style="right: 0;left: auto;">
+            <% unless (current_user.friends & @user.friends).empty? %>
+                <% (current_user.friends & @user.friends).each do |friend| %>
+                    <%= link_to "#{friend.first_name} #{friend.last_name}", profile_path(friend), class: "item" %>
+                <% end %>
+            <% else %>
+                <div class="item">(None)</div>
+            <% end %>
+        </div>
+    </div>
 </div>

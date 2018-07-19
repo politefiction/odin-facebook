@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
   def create
     @message = @conversation.messages.new(message_params)
     unless @message.save
-      flash[:alert] = (@message.body.blank? ? "Message cannot be empty." : "Message failed to post.")
+      flash[:alert] = (@message.errors ? @message.errors.full_messages : "Message failed to post.")
     end
     redirect_to conversation_messages_path(@conversation)
   end

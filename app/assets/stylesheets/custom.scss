@@ -61,11 +61,15 @@
     border-radius: 0.28571429rem;
     border: 0.75px solid rgba(34, 36, 38, 0.15);
     padding-bottom: 20px;
+    background: rgb(152, 213, 213)
 }
 
 .link-container {
     padding: 0 10px 10px 10px;
     font-weight: bold;
+    a {
+        color: white;
+    }
 }
 
 .left-link {
@@ -78,7 +82,7 @@
     float: right;
 }
 
-.formatted-author-time {
+.italics-format {
     font-size: 11px;
     font-style: italic;
 }

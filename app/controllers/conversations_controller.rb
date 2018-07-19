@@ -16,7 +16,7 @@ class ConversationsController < ApplicationController
     if @conversation.save
       redirect_to conversation_messages_path(@conversation)
     else
-      flash.now[:alert] = "Message cannot be blank."
+      flash.now[:alert] = @conversation.errors.full_messages
       @conversation.messages.build
       render new_conversation_path(recipient_id: params[:recipient_id])
     end

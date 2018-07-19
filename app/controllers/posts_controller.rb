@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = User.find(params[:user_id]).posts
+    @user = User.find(params[:user_id])
+    @posts = @user.posts
     unless user_or_friend?
       flash[:notice] = "You must be friends with a user to view their posts."
       redirect_to root_url
@@ -20,7 +21,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post created."
       redirect_to user_posts_path(current_user)
     else
-      flash[:alert] = "Hmm, something went wrong. Try again?"
+      flash[:alert] = @post.errors.full_messages
       redirect_to new_user_post_path
     end
   end
@@ -44,7 +45,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post updated."
       redirect_to user_post_path(@post.user, @post)
     else
-      flash[:alert] = "Hmm, something went wrong. Try again?"
+      flash[:alert] = @post.errors.full_messages
       edit_user_post(@post)
     end
   end
@@ -52,7 +53,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:success] = "Post deleted"
+    flash[:success] = "Post deleted."
     redirect_back(fallback_location: root_url)
   end
 

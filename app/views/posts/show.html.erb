@@ -1,10 +1,17 @@
 <div class="post-comment-container">
     <div class="post-container">
         <h2><%= @post.title %></h2>
-        <p class="formatted-author-time">
+        <% if current_user == @post.user %>
+            <p>
+                <%= link_to "Edit", edit_user_post_path(current_user, @post) %> | <%= link_to "Delete", user_post_path(current_user, @post), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </p>
+        <% end %>
+        <p class="italics-format">
             Posted by <%= "#{@post.user.first_name} #{@post.user.last_name}" %> at <%= "#{@post.created_at.strftime("%I:%M %P, %b %d, %Y")}" %>
+            <% if @post.created_at != @post.updated_at %>
+                | Edited at <%= "#{@post.updated_at.strftime("%I:%M %P, %b %d, %Y")}" %>
+            <% end %>
         </p>
-
         <p><%= @post.body %></p>
     </div>
     <div class="link-container">

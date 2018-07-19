@@ -21,7 +21,7 @@ module ApplicationHelper
 
     def flash_header(key)
         case key
-            when 'notice' then "FYI"
+            when 'notice' then "Notice:"
             when 'success' then "Success!"
             when 'error' then "The following errors occured:"
             when 'alert' then "We had a problem with your request:"
@@ -29,7 +29,7 @@ module ApplicationHelper
     end
 
     def calculate_grid_columns
-        if params[:id] and current_user.friends.include? User.find(params[:id])
+        if @user and current_user.friends.include? @user
             "ui three column relaxed grid"
         else
             "ui two column relaxed grid"
