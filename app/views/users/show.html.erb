@@ -1,7 +1,13 @@
-
 <div class="ui vertically divided grid">
     <div class="two column row">
-            <div class="column"><h1><%= "#{@user.first_name} #{@user.last_name}" %></h1></div>
+            <div class="column">
+                <div class="item">
+                    <h2>
+                        <%= image_tag (@user.image ?  @user.image :  avatar_url(@user)), class: "ui avatar image" %>
+                        <%= "#{@user.first_name} #{@user.last_name}" %>
+                    </h2>
+                </div>
+            </div>
             <div class="column"><%= render 'users/profile_button' %></div>
     </div>
 </div>
