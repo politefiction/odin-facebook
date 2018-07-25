@@ -7,9 +7,9 @@
             </p>
         <% end %>
         <p class="italics-format">
-            Posted by <%= "#{@post.user.first_name} #{@post.user.last_name}" %> at <%= "#{@post.created_at.strftime("%I:%M %P, %b %d, %Y")}" %>
+            Posted by <%= "#{@post.user.first_name} #{@post.user.last_name}" %> on <%= "#{@post.created_at.strftime("%b %d, %Y, %I:%M %P")}" %>
             <% if @post.created_at != @post.updated_at %>
-                | Edited at <%= "#{@post.updated_at.strftime("%I:%M %P, %b %d, %Y")}" %>
+                | Edited <%= "#{@post.updated_at.strftime("%b %d, %Y, %I:%M %P")}" %>
             <% end %>
         </p>
         <p><%= @post.body %></p>
@@ -17,5 +17,9 @@
     <div class="link-container">
         <div class="left-link"><%= link_to "Likes", '#' %></div>
         <div class="right-link"><%= link_to "Comments", '#' %></div>
-    </div>
+    </div><br />
+
+    <%= render 'comments/form' %>
 </div>
+
+<%= nested_comments(@post.comments) %>

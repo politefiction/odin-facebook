@@ -1,0 +1,9 @@
+<%= form_for [@commentable, @comment] do |f| %>
+    <%= f.hidden_field :parent_id %>
+    <%= f.hidden_field :user_id, value: current_user.id.to_i %>
+    <p>
+        <%= f.label :content, "New Comment" %><br />
+        <%= f.text_area :content, class: "text-box" %>
+    </p>
+    <p><%= f.submit "Post Comment" %></p>
+<% end %>

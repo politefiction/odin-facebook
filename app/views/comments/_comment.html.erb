@@ -1,0 +1,6 @@
+<h4><%= comment.user.first_name %></h4>
+<%= comment.created_at.strftime('%m-%d-%y, %H:%M %P') %>
+<p><%= simple_format comment.content %></p>
+<%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], parent_id: comment) %>
+
+<!--  nested_comments comment.children -->

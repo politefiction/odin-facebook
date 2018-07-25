@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
+  include Commentable
   before_action :authenticate_user!
 
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts
-    unless user_or_friend?
+    unless user_or_friend?(@user)
       flash[:notice] = "You must be friends with a user to view their posts."
       redirect_to root_url
     end
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    unless user_or_friend?
+    unless user_or_friend?(@post.user)
       flash[:notice] = "You must be friends with a user to view their posts."
       redirect_to root_url
     end
@@ -64,8 +65,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body)
   end
 
-  def user_or_friend?
-    user = User.find(params[:user_id])
+  def user_or_friend?(user)
     (current_user == user) or (user.friends.include? current_user)
   end
 end
