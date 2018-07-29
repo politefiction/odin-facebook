@@ -16,10 +16,10 @@
     </div>
     <div class="link-container">
         <div class="left-link"><%= link_to "Likes", '#' %></div>
-        <div class="right-link"><%= link_to "Comments", '#' %></div>
+        <div class="right-link"><%= link_to "#{pluralize(@post.comments.count, "Comment")}", '#' %></div>
     </div><br />
 
     <%= render 'comments/form' %>
 </div>
 
-<%= nested_comments(@post.comments) %>
+<%= nested_comments(@post.comments.where(ancestry: nil)) %>
