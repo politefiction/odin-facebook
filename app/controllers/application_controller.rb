@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
   end
   
+  private
+
+  def user_or_friend?(user)
+    (current_user == user) or (user.friends.include? current_user)
+  end
 end

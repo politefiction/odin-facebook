@@ -10,11 +10,16 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
-    if @comment.save
-      flash[:notice] = "Successfully created comment."
-      redirect_to @commentable
+    if user_or_friend?(@commentable.user)
+      if @comment.save
+        flash[:notice] = "Successfully created comment."
+        redirect_to @commentable
+      else
+        flash[:error] = "Error adding comment."
+      end
     else
-      flash[:error] = "Error adding comment."
+      flash[:alert] = "You must be friends with this user to leave comments."
+      redirect_to root_url
     end
   end
 

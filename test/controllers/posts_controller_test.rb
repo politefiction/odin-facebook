@@ -26,8 +26,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert @grace.friends.include? @marianna
     assert_not @grace.friends.include? @sid
 
-    post = Post.create(user_id: @grace, title: "Test Post", body: "The quick, brown fox jumps over a lazy dog.")
-
     sign_in @grace
     get user_posts_path(@grace)
     assert_response :success

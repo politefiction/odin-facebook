@@ -65,7 +65,5 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body)
   end
 
-  def user_or_friend?(user)
-    (current_user == user) or (user.friends.include? current_user)
-  end
+
 end
