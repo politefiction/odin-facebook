@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy #or maybe leave these?
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -25,7 +26,6 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.name.split[0]
       user.last_name = auth.info.name.split[-1]
-      # If you add an image to the User model
       user.image = auth.info.image
     end
   end
