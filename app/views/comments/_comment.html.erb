@@ -1,7 +1,7 @@
 <div class="comment-box">
     <h5><%= comment.user.first_name %> | <%= comment.created_at.strftime('%m-%d-%y, %H:%M %P') %></h5>
     <p><%= simple_format comment.content %></p>
-    <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], parent_id: comment) %>
+    <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], parent_id: comment) %> | <%= link_to "Like (#{comment.likes.count})", like_comment_path(comment), method: :post %>
 </div>
 
 <% unless @parent_id %>

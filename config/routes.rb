@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   get 'users', to: 'users#index'
   get 'profile/:id', to: 'users#show', as: 'profile'
   get 'friends', to: 'users#friends_list', as: 'friends'
+  post 'like_post/:id', to: 'posts#like_post', as: 'like_post'
+  post 'like_comment/:id', to: 'comments#like_comment', as: 'like_comment'
 end

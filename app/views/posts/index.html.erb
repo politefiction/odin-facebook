@@ -22,7 +22,7 @@
         </div>
         
         <div class="link-container">
-            <div class="left-link"><%= link_to "Likes", '#' %></div>
+            <div class="left-link"><%= pluralize(post.likes.count, "Like") %> | <%= link_to "Like", like_post_path(post), method: :post %></div>
             <div class="right-link"><%= link_to "#{pluralize(post.comments.count, "Comment")}", user_post_path(post.user, post) %></div>
         </div>
     </div><br />

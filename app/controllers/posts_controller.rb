@@ -58,6 +58,17 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: root_url)
   end
 
+  def like_post
+    @post = Post.find(params[:id])
+    @like = Like.new(user_id: current_user.id, post_id: @post.id)
+    if @like.save
+      flash[:success] = "You have liked this post."
+    else
+      flash[:alert] = @like.errors.full_messages
+    end
+    redirect_to user_post_path(@post.user, @post)
+  end
+
 
   private
 

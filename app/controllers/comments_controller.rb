@@ -32,6 +32,18 @@ class CommentsController < ApplicationController
   def delete
   end
 
+  def like_comment
+    @comment = Comment.find(params[:id])
+    @post = @comment.commentable_type.constantize.find(@comment.commentable_id)
+    @like = Like.new(user_id: current_user.id, comment_id: @comment.id)
+    if @like.save
+      flash[:success] = "You have liked this comment."
+    else
+      flash[:alert] = @like.errors.full_messages
+    end
+    redirect_to user_post_path(@post.user, @post)
+  end
+
 
   private
 
