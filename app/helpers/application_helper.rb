@@ -40,4 +40,11 @@ module ApplicationHelper
         gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
         "http://gravatar.com/avatar/#{gravatar_id}.png"
     end
+
+    def like_list(object)
+        # how to get rid of visible html tags? hmm
+        object.likes.map do |like|
+            content_tag(:li, "#{like.user.first_name} #{like.user.last_name}")
+        end.join.html_safe
+    end
 end
