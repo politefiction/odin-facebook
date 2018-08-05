@@ -44,7 +44,7 @@ module ApplicationHelper
     def like_list(object)
         # how to get rid of visible html tags? hmm
         object.likes.map do |like|
-            content_tag(:li, "#{like.user.first_name} #{like.user.last_name}")
-        end.join.html_safe
+            "#{like.user.first_name} #{like.user.last_name}\n"
+        end
     end
 end

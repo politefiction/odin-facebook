@@ -21,9 +21,6 @@
             <%= link_to "Read More", user_post_path(post.user, post), class: "italics-format" %>
         </div>
         
-        <div class="link-container">
-            <div class="left-link"><%= pluralize(post.likes.count, "Like") %> | <%= link_to "Like", like_post_path(post), method: :post %></div>
-            <div class="right-link"><%= link_to "#{pluralize(post.comments.count, "Comment")}", user_post_path(post.user, post) %></div>
-        </div>
+        <%= render 'layouts/like_comment_links', post: post %>
     </div><br />
 <% end %>
