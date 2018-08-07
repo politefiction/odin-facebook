@@ -2,7 +2,7 @@
     <%= f.hidden_field :parent_id %>
     <%= f.hidden_field :user_id, value: current_user.id.to_i %>
     <p>
-        <%= f.label :content, "New comment:" %><br />
+        <%= f.label :content, "Enter comment here:" %><br />
         <%= f.text_area :content, class: "text-box" %>
     </p>
     <p><%= f.submit "Post Comment" %></p>

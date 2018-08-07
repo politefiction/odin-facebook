@@ -73,6 +73,8 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    discard (1.0.0)
+      activerecord (>= 4.2, < 6)
     dotenv (2.5.0)
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
@@ -87,7 +89,6 @@ GEM
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    gravtastic (3.2.6)
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -277,9 +278,9 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
+  discard
   dotenv-rails
   faker
-  gravtastic
   guard
   guard-minitest
   jbuilder (~> 2.5)

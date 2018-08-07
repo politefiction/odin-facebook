@@ -1,4 +1,4 @@
 <h2>Reply to Comment</h2>
-<%= nested_comments_reply(Comment.find(@parent_id)) %>
+<%= nested_comments(Comment.find(@parent_id).path) %>
 
 <%= render 'form' %>

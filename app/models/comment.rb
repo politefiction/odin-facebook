@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  include Discard::Model
+  
   belongs_to :user
   has_ancestry
   has_many :likes, dependent: :destroy

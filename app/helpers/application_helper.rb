@@ -42,7 +42,6 @@ module ApplicationHelper
     end
 
     def like_list(object)
-        # how to get rid of visible html tags? hmm
         object.likes.map do |like|
             "#{like.user.first_name} #{like.user.last_name}\n"
         end

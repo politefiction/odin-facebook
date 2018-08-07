@@ -24,12 +24,26 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @commentable = find_commentable
+    @comment = Comment.find(params[:id])
   end
 
   def update
+    @commentable = find_commentable
+    @comment = Comment.find(params[:id])
+    if @comment.update_attributes(comment_params)
+      flash[:notice] = "Successfully edited comment."
+      redirect_to @commentable
+    else
+      flash[:error] = "Error editing comment."
+    end
   end
 
-  def delete
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.discard
+    flash[:success] = "Comment deleted."
+    redirect_back(fallback_location: root_url)
   end
 
   def like_comment

@@ -1,0 +1,5 @@
+<h2>Edit Comment</h2>
+
+<%= nested_comments(@comment.parent.path) if @comment.ancestors? %>
+
+<%= render 'form' %>

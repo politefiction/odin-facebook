@@ -1,9 +1,22 @@
 <div class="comment-box">
-    <h5><%= comment.user.first_name %> | <%= comment.created_at.strftime('%m-%d-%y, %H:%M %P') %></h5>
-    <p><%= simple_format comment.content %></p>
-    <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], parent_id: comment) %> | <%= link_to "Like (#{comment.likes.count})", like_comment_path(comment), method: :post, title: like_list(comment) %>
+    <h5><%= "#{comment_name(comment)} | #{comment.created_at.strftime('%m-%d-%y, %H:%M %P')}" %>
+    <%= "*" if comment.created_at != comment.updated_at %>
+    </h5>
+    <p><%= simple_format comment_content(comment) %></p>
+    <% unless comment.discarded? %>
+    <div class="comment-links">
+        <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], parent_id: comment) %> | 
+        <% if comment.user == current_user %>
+            <%= link_to "Edit", edit_post_comment_path(@commentable, comment)  %> | 
+        <% end %>
+        <% if (comment.user == current_user) or (@commentable.user == current_user) %>
+            <%= link_to "Delete", post_comment_path(@commentable, comment), method: :delete %> |
+        <% end %>
+        <%= link_to "Like (#{comment.likes.count})", like_comment_path(comment), method: :post, title: like_list(comment) %>
+    </div>
+    <% end %>
 </div>
 
-<% unless @parent_id %>
+<% unless params[:post_id] %>
     <%= nested_comments comment.children if comment.children? %>
 <% end %>
