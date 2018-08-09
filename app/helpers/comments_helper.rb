@@ -6,7 +6,7 @@ module CommentsHelper
     end
 
     def comment_name(comment)
-        if comment.discarded?
+        if comment.discarded? or comment.user.nil?
             "[deleted]"
         else
             "#{comment.user.first_name} #{comment.user.last_name}"
