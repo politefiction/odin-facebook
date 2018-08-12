@@ -48,6 +48,8 @@ gem 'semantic-ui-sass'
 # gem 'capistrano-rails', group: :development
 # Discard comments rather than delete them
 gem 'discard'
+# AWS gem for storage
+gem 'aws-sdk-s3', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
