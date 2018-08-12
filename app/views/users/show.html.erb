@@ -3,7 +3,13 @@
             <div class="column">
                 <div class="item">
                     <h2>
-                        <%= image_tag (@user.image ?  @user.image :  avatar_url(@user)), class: "ui avatar image" %>
+                        <% if @user.avatar.attached? %>
+                            <%= image_tag @user.avatar, class: "ui avatar image" %>
+                        <% elsif @user.image %>
+                            <%= image_tag @user.image, class: "ui avatar image" %>
+                        <% else %>
+                            <%= image_tag avatar_url(@user), class: "ui avatar image" %>
+                        <% end %>
                         <%= "#{@user.first_name} #{@user.last_name}" %>
                     </h2>
                 </div>
