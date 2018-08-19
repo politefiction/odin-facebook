@@ -1,0 +1,14 @@
+<%= form_for [@user, @post], class: "ui form" do |f| %>
+    <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title %><br />
+    </div>
+    <br />
+    <div class="field">
+        <%= f.label "Write your post here:" %><br />
+        <%= f.text_area :body, class: "tinymce", rows: 40, cols: 120 %><br />
+        <%= tinymce %>
+    </div>
+
+    <%= f.submit (yield :submit), class: "ui teal button" %>
+<% end %>

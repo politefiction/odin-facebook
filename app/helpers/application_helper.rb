@@ -43,7 +43,7 @@ module ApplicationHelper
 
     def like_list(object)
         object.likes.map do |like|
-            like.user? ? "#{like.user.first_name} #{like.user.last_name}\n" : "[deleted]"
+            like.user ? "#{like.user.first_name} #{like.user.last_name}\n" : "[deleted]"
         end
     end
 end

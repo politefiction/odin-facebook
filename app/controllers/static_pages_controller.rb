@@ -1,7 +1,11 @@
 class StaticPagesController < ApplicationController
+  before_action :authenticate_user!
+
   def home
-    unless user_signed_in?
-      redirect_to new_user_session_path
+    @feed = []
+    current_user.friends.map do |friend|
+      friend.posts.map { |post| @feed << post }
     end
+    @feed.sort_by!(&:created_at).reverse!
   end
 end

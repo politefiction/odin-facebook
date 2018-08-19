@@ -3,7 +3,8 @@
     <%= f.hidden_field :user_id, value: current_user.id.to_i %>
     <p>
         <%= f.label :content, "Enter comment here:" %><br />
-        <%= f.text_area :content, class: "text-box" %>
+        <%= f.text_area :content, class: "tinymce", rows: 10 %>
+        <%= tinymce %>
     </p>
-    <p><%= f.submit "Post Comment" %></p>
+    <p><%= f.submit "Post Comment", class: "tiny ui button" %></p>
 <% end %>

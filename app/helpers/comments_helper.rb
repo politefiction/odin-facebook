@@ -14,6 +14,6 @@ module CommentsHelper
     end
 
     def comment_content(comment)
-        comment.discarded? ? "[deleted]" : comment.content
+        comment.discarded? ? "[deleted]" : sanitize(comment.content)
     end
 end

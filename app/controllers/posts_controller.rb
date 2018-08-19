@@ -55,7 +55,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = "Post deleted."
-    redirect_back(fallback_location: root_url)
+    redirect_to user_posts_path(current_user)
   end
 
   def like_post

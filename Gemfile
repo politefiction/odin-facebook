@@ -50,6 +50,10 @@ gem 'semantic-ui-sass'
 gem 'discard'
 # AWS gem for storage
 gem 'aws-sdk-s3', require: false
+# MiniMagick in case I need that
+gem 'mini_magick'
+# For text toolbar
+gem 'tinymce-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

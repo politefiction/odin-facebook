@@ -17,7 +17,7 @@
             <p class="italics-format">
                 <%= "#{post.created_at.strftime("%I:%M %P, %b %d, %Y")}" %>
             </p>
-            <p><%= post.body.truncate(175, separator: ' ') %></p>
+            <p><%= sanitize post.body.truncate(175, separator: ' ') %></p>
             <%= link_to "Read More", user_post_path(post.user, post), class: "italics-format" %>
         </div>
         
