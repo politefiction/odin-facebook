@@ -1,15 +1,9 @@
-<h1><%= current_user.first_name %>'s Front Page</h1>
+<h2><%= current_user.first_name %>'s Front Page</h2>
 
 <% @feed.each do |post| %>
     <div class="post-comment-container">
         <div class="post-container">
-            <h2><%= post.title %></h2>
-            <p class="italics-format">
-                Posted by <%= "#{post.user.first_name} #{post.user.last_name}" %> on <%= "#{post.created_at.strftime("%b %d, %Y, %I:%M %P")}" %>
-                <% if post.created_at != post.updated_at %>
-                    | Edited <%= "#{post.updated_at.strftime("%b %d, %Y, %I:%M %P")}" %>
-                <% end %>
-            </p>
+            <%= render 'posts/post_heading', post: post %>
             <p><%= sanitize post.body.truncate(175, separator: ' ') %></p>
             <%= link_to "Read More", user_post_path(post.user, post), class: "italics-format" %>
         </div>

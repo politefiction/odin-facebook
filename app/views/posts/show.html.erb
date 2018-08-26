@@ -1,25 +1,6 @@
 <div class="post-comment-container">
     <div class="post-container">
-        <h4>
-            <%= image_tag display_avatar(@post.user), class: "ui avatar image" %>
-            <%= "#{@post.user.first_name} #{@post.user.last_name}" %>
-        </h4>
-        <h2><%= sanitize @post.title %></h2>
-        <p>
-            <div class="one-liner">
-                <div class="italics-format">
-                    Posted <%= "#{@post.created_at.strftime("%b %d, %Y, %I:%M %P")}" %>
-                    <% if @post.created_at != @post.updated_at %>
-                        | Edited <%= "#{@post.updated_at.strftime("%b %d, %Y, %I:%M %P")}" %>
-                    <% end %>
-                </div>
-                <% if current_user == @post.user %>
-                <div>
-                    | <%= link_to "Edit", edit_user_post_path(current_user, @post) %> | <%= link_to "Delete", user_post_path(current_user, @post), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </div>
-            <% end %>
-            </div>
-        </p>
+        <%= render 'post_heading', post: @post %>
         <p><%= sanitize @post.body %></p>
     </div>
     <%= render 'layouts/like_comment_links', post: @post %>

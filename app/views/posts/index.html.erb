@@ -8,15 +8,7 @@
 <% @posts.each do |post| %>
     <div class="post-comment-container">
         <div class="post-container">
-            <h2><%= post.title %></h2>
-            <% if current_user == post.user %>
-                <p>
-                    <%= link_to "Edit", edit_user_post_path(current_user, post) %> | <%= link_to "Delete", user_post_path(current_user, post), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </p>
-            <% end %>
-            <p class="italics-format">
-                <%= "#{post.created_at.strftime("%I:%M %P, %b %d, %Y")}" %>
-            </p>
+            <%= render 'post_heading', post: post %>
             <p><%= sanitize post.body.truncate(175, separator: ' ') %></p>
             <%= link_to "Read More", user_post_path(post.user, post), class: "italics-format" %>
         </div>

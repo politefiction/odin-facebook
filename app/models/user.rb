@@ -8,6 +8,9 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  has_many :started_conversations, class_name: "Conversation", foreign_key: :sender_id, dependent: :destroy
+  has_many :continued_conversations, class_name: "Conversation", foreign_key: :recipient_id, dependent: :destroy
+
   has_many :friendships, foreign_key: :inverse_friend_id, dependent: :destroy
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: :friend_id, dependent: :destroy
   has_many :friends, through: :friendships

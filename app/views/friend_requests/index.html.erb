@@ -6,7 +6,9 @@
             <div class="item">
                 <div class="ui grid">
                     <div class="eight wide column">
-                        <p><%= link_to request.befriender.first_name, profile_path(request.befriender) %> wants to be friends!</p>
+                        <p>
+                        <%= image_tag display_avatar(request.befriender), class: "ui avatar image" %>
+                        <%= link_to request.befriender.first_name, profile_path(request.befriender) %> wants to be friends!</p>
                     </div>
                     <div class="eight wide column">
                         <%= link_to "Accept", friendships_path(inverse_friend_id: request.befriender.id), method: :post, class: "small ui left attached button" %>

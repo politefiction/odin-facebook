@@ -8,7 +8,11 @@
             <% else %>
                 <% recipient = User.find(conversation.sender_id) %>
             <% end %>
-            <%= link_to recipient.first_name, conversation_messages_path(conversation), class: bold_if_unread(conversation) %><br />
+            <p>
+            <%= image_tag display_avatar(recipient), class: "ui avatar image" %>
+            <%= link_to "#{recipient.first_name} #{recipient.last_name}", conversation_messages_path(conversation), class: bold_if_unread(conversation) %>
+            </p>
+            <br />
         <% end %>
         </div>
     </div>

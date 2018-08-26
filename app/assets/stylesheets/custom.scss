@@ -13,7 +13,14 @@
 /* body */
 
 .ui.pointing.menu {
-    border-bottom: 2px solid rgb(152, 213, 213);
+    border-bottom: 2px solid rgba(104, 146, 84, 0.637);
+}
+
+a.underlined-link {
+    color: black;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .one-liner {
@@ -24,13 +31,22 @@
     }
 }
 
+.ui.button {
+    color: white;
+    background-color: rgba(104, 146, 84, 0.637);
+    &:hover {
+        background-color: rgba(104, 146, 84, 0.76);
+        color: white;
+    }
+}
+
 
 /* conversations and messages */
 
 #inbox_unread {
-    background: rgb(152, 213, 213);
+    background: rgba(104, 146, 84, 0.637);
     font-weight: bold;
-
+    color: white;
 }
 
 .unread_messages {
@@ -69,7 +85,7 @@
     border-radius: 0.28571429rem;
     border: 0.75px solid rgba(34, 36, 38, 0.15);
     padding-bottom: 20px;
-    background: rgb(152, 213, 213)
+    background: rgba(104, 146, 84, 0.637)
 }
 
 #comment-container {
@@ -103,7 +119,7 @@
 }
 
 .comment-box {
-    border: 2px solid rgb(183, 183, 197);
+    border: 2px solid rgba(104, 146, 84, 0.637);
     border-radius: 5px;
     padding: 5px;
     margin: 5px 0;

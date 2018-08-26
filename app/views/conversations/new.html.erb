@@ -6,5 +6,5 @@
         <div class="field"><%= m.text_area :body, class: "text-box" %></div>
         <%= m.hidden_field :user_id, value: current_user.id %>
     <% end %>
-    <div><%= f.submit "Submit message", class: "ui teal button" %></div>
+    <div><%= f.submit "Submit message", class: "ui button" %></div>
 <% end %>

@@ -8,7 +8,10 @@
         <% user = User.find(message.user_id) %>
             <div class="item">
                 <div class="content">
-                    <div class="header"><strong><%= user.first_name %></strong> | <%= message.message_time %></div>
+                    <div class="header">
+                        <%= image_tag display_avatar(user), class: "ui avatar image" %>
+                        <strong><%= user.first_name %></strong> | <%= message.message_time %>
+                    </div>
                     <div class="list">
                         <div class="item">
                             <i class="right triangle icon"></i>
@@ -25,5 +28,5 @@
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
     <div class="field"><%= f.text_area :body, class: "form-control" %></div>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <div><%= f.submit "Submit message", class: "ui teal button" %></div>
+    <div><%= f.submit "Submit message", class: "ui button" %></div>
 <% end %>
