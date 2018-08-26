@@ -28,14 +28,14 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.name.split[0]
       user.last_name = auth.info.name.split[-1]
-      user.image = auth.info.image
+      user.fbavatar = auth.info.image
     end
   end
 
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.image = data["image"] if user.image.blank?
+        user.fbavatar = data["image"] if user.fbavatar.blank?
       end
     end
   end

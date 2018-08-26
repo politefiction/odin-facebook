@@ -3,9 +3,13 @@
 <div class="ui list">
 <% @users.order(:last_name).each do |user| %>
     <p>
+        <%= image_tag display_avatar(user), class: "ui avatar image" %>
         <%= link_to "#{user.first_name} #{user.last_name}", profile_path(user), class: "item" %>
         <% if user.id != current_user.id %>
             | <%= link_to "Send Message", conversation_link(current_user, user) %>
+            <% if current_user.friends.include? user %>
+                | <%= link_to "View Posts", user_posts_path(user) %> 
+            <% end %>
         <% else %>
              (That's you!)
         <% end %>

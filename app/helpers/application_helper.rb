@@ -46,4 +46,14 @@ module ApplicationHelper
             like.user ? "#{like.user.first_name} #{like.user.last_name}\n" : "[deleted]"
         end
     end
+
+    def display_avatar(user)
+        if user.avatar.attached?
+            user.avatar
+        elsif user.fbavatar
+            user.fbavatar
+        else
+            avatar_url(user)
+        end
+    end
 end

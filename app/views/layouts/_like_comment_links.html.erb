@@ -1,4 +1,4 @@
-<div class="link-container">
+<div class="like-comment-links">
     <div class="left-link"><%= content_tag(:i, nil, class: "thumbs up outline icon", title: like_list(post)) %><%= post.likes.count %> | <%= link_to "Like", like_post_path(post), method: :post %></div>
     <div class="right-link"><%= link_to "#{pluralize(post.comments.count, "Comment")}", user_post_path(post.user, post) %></div>
 </div>

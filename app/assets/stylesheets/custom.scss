@@ -16,6 +16,14 @@
     border-bottom: 2px solid rgb(152, 213, 213);
 }
 
+.one-liner {
+    display: table-row;
+    div {
+        display: table-cell;
+        padding-right: 5px;
+    }
+}
+
 
 /* conversations and messages */
 
@@ -70,7 +78,7 @@
     font-weight: bold;
 }
 
-.link-container {
+.like-comment-links {
     padding: 0 10px 10px 10px;
     font-weight: bold;
     color: white;
