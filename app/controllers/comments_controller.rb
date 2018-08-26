@@ -41,9 +41,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    @commentable = find_commentable
     @comment.discard
     flash[:success] = "Comment deleted."
-    redirect_back(fallback_location: root_url)
+    redirect_to @commentable
   end
 
   def like_comment
