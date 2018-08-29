@@ -75,6 +75,7 @@ Rails.application.configure do
   # ActionMailer settings for SendGrid
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_options = { host: 'pacific-thicket-49521.herokuapp.com' }
   config.action_mailer.smtp_settings = {
       :user_name => ENV['SENDGRID_USERNAME'],
       :password => ENV['SENDGRID_PASSWORD'],
