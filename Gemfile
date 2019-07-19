@@ -36,6 +36,8 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise'
 # Use OmniAuth for sign-in
 gem 'omniauth-facebook'
+# To protect Omniauth from itself
+gem 'omniauth-rails_csrf_protection'
 # Use Faker to seed data for examples and things
 gem 'faker'
 # Use Paperclip for uploading pictures
@@ -51,7 +53,7 @@ gem 'discard'
 # AWS gem for storage
 gem 'aws-sdk-s3', require: false
 # MiniMagick in case I need that
-gem 'mini_magick'
+gem 'mini_magick', '>= 4.9.4'
 # For text toolbar
 gem 'tinymce-rails'
 # Use SendGrid for email
